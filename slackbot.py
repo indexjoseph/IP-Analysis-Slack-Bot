@@ -30,14 +30,15 @@ def message(payload):
     channel_id = event.get('channel')
     user_id = event.get('user')
     text = event.get('text')
-    whole_text = text.split()
-    addresses = checkForIPAddresses(whole_text)
+    if user_id != BOT_ID:
+        whole_text = text.split()
+        addresses = checkForIPAddresses(whole_text)
     response = "Hey there! There was one or more IP Addresses found in the message previously sent."
     if len(addresses) > 0 and user_id != BOT_ID:
         client.chat_postMessage(channel=channel_id, text=response)
         for address in addresses:
-             client.chat_postMessage(channel=channel_id, text="IP Address: " + address)
-             analysis = getIPInformation(address)
+             client.chat_postMessage(channel=channel_id, text="\n\nIP Address: " + address)
+             analysis = cleanJsonOutput(getIPInformation(address))
              client.chat_postMessage(channel=channel_id, text=analysis)
 
 
@@ -70,10 +71,13 @@ def getIPInformation(location):
 
     return response.text
 
-def cleanJsonOutput(text):
-    
-
-
+def cleanJsonOutput(data):
+    analysis = json.loads(data)
+    analysisCMC = analysis["data"]["attributes"]["last_analysis_results"]["CMC Threat Intelligence"]
+    returnText = str(analysis["data"]["attributes"]["whois"]) + "\n"
+    for keys in analysisCMC:
+        returnText += " " + str(keys).capitalize() + " : " + str(analysisCMC[keys]).capitalize() + " "
+    return returnText
 
 if __name__ == "__main__":
     app.run(debug=True)
