@@ -26,6 +26,13 @@ Here's a walkthrough of bot in action:
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with [Gyazo GIF](https://gyazo.com/en).  
 
+## How to set it up for your self
+
+1. Create your Slack workspace
+2. Ensure flask, slackeventsapi, python-dotenv, and requests are installed via PIP
+3. Go to https://api.slack.com/apps andd Create A New App From Scratch and give it an app name and connect it to your workspace.
+4. Copy your Signing Secret and replace the one in the .env folder.
+5. 
 
 ### Requirements
 
