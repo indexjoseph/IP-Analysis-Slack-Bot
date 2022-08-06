@@ -22,12 +22,6 @@ Here's a walkthrough of bot in action:
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with [Gyazo GIF](https://gyazo.com/en).  
 
-# How do I make create one?
-1. Clone this repository onto your local machine and within the slack-bot folder create a folder called ".env"
-2. Create a Slack Account at https://slack.com/
-3. Create a workspace at https://slack.com/get-started#/landing
-4. Make an ngrok acccount and install ngrok.exe at https://ngrok.com/download
-5. Enter your command line prompt and ensure that flask (https://pypi.org/project/Flask/) , slackeventsapi (https://pypi.org/project/slackeventsapi/), requests (https://pypi.org/project/requests/), and pathlib (https://pypi.org/project/pathlib/)
 
 ### Requirements
 
