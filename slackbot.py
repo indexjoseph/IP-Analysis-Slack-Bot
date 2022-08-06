@@ -1,12 +1,12 @@
 from queue import Empty
 from re import A
-import slack, os
+from urllib import response
+import slack, os, re, requests, json
 import re
 from dotenv import load_dotenv
 from pathlib import Path
 from slackeventsapi import SlackEventAdapter
 from flask import Flask
-import json
 
 env_path = Path(".") / ".env"
 load_dotenv(dotenv_path=env_path)
@@ -30,32 +30,49 @@ def message(payload):
     channel_id = event.get('channel')
     user_id = event.get('user')
     text = event.get('text')
-    wholeText = text.split()
-    addresses = checkForIPAddresses(wholeText)
-    response = "Hey there! There was no IP Addresses found in the message previously sent"
-    if len(addresses) > 0:
-        response = "Hey There! There was one or more IP Addresses found within the message previously sent"+"\nHere's a list of the addresse(s) found: "
-        for address in addresses:
-            response += " " + address + " "
-
-    if user_id != BOT_ID:
+    whole_text = text.split()
+    addresses = checkForIPAddresses(whole_text)
+    response = "Hey there! There was one or more IP Addresses found in the message previously sent."
+    if len(addresses) > 0 and user_id != BOT_ID:
         client.chat_postMessage(channel=channel_id, text=response)
+        for address in addresses:
+             client.chat_postMessage(channel=channel_id, text="IP Address: " + address)
+             analysis = getIPInformation(address)
+             client.chat_postMessage(channel=channel_id, text=analysis)
 
-def checkForIPAddresses(entireMessage):
-  regexCheck = re.compile(
+
+def checkForIPAddresses(entire_message):
+  regex_check = re.compile(
     r'((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)'
   )
   
-  addressesFound = []
+  addresses_found = []
   
-  for words in entireMessage:
+  for words in entire_message:
       words = words.rstrip()
-      result = regexCheck.search(words)
+      foundIP = regex_check.search(words)
     
-      if result:
-          addressesFound.append(words)
+      if foundIP:
+          addresses_found.append(words)
         
-  return addressesFound
+  return addresses_found
+
+def getIPInformation(location):
+    
+    url = "https://www.virustotal.com/api/v3/ip_addresses/" + location
+    headers = {
+        "Accept": "application/json",
+        "x-apikey":
+        "a8a9120c6ef5ddf3791bca1719350d1f9157a392c209089730b6d6a13a58aaf9"
+    }
+
+    response = requests.get(url, headers=headers)
+
+    return response.text
+
+def cleanJsonOutput(text):
+    
+
 
 
 if __name__ == "__main__":
