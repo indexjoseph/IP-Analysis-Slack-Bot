@@ -4,7 +4,7 @@ Author: **Joseph Oladeji**
 
 # Description
 
-**ipAnalysisSlackBo.py** is a bot that will read messages in the designated channel(s) it has been added to via the `Slack API`,
+**ipAnalysisSlackBot.py** is a bot that will read messages in the designated channel(s) it has been added to via the `Slack API`,
 the bot will scan every message from a user to check for an IP Address using regex. If an IP Address is found the bot will first send
 a message in the channel it was sent in. Then it will send an GET Request to the `VirusTotal API` and retrieve information on the IP Address.
 Afterwards it will display contextual information based on the IP Address in the channel.
