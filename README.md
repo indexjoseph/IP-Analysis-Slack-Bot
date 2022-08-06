@@ -9,6 +9,10 @@ the bot will scan every message from a user to check for an IP Address using reg
 a message in the channel it was sent in. Then it will send an GET Request to the `VirusTotal API` and retrieve information on the IP Address.
 Afterwards it will display contextual information based on the IP Address in the channel.
 
+# Youtube Walkthrough 
+
+https://www.youtube.com/watch?v=OOdRJM3wnd8&ab_channel=Joseph
+
 # Date
 
 Date: **08/06/2022** 
