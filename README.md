@@ -29,6 +29,11 @@ GIF created with [Gyazo GIF](https://gyazo.com/en).
 4. Make an ngrok acccount and install ngrok.exe at https://ngrok.com/download
 5. Enter your command line prompt and ensure that flask (https://pypi.org/project/Flask/) , slackeventsapi (https://pypi.org/project/slackeventsapi/), requests (https://pypi.org/project/requests/), and pathlib (https://pypi.org/project/pathlib/)
 
+### Requirements
+
+For general questions/issues about Slack API platform or its server-side, could you submit questions at https://my.slack.com/help/requests/new instead. :bow:
+
+Please read the [Contributing guidelines](https://github.com/slackapi/python-slack-sdk/blob/main/.github/contributing.md) and [Code of Conduct](https://slackhq.github.io/code-of-conduct) before creating this issue or pull request. By submitting, you are agreeing to those rules.
 
 ## APIs
 
