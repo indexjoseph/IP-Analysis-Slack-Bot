@@ -31,7 +31,7 @@ GIF created with [Gyazo GIF](https://gyazo.com/en).
 1. Create your Slack workspace
 2. Ensure flask, slackeventsapi, slackclient, python-dotenv, and requests are installed via PIP `Example: pip install flask`
 3. Go to https://api.slack.com/apps and Create A New App From Scratch and give it an app name and connect it to your workspace.
-4. Go to the OAuth Permissions on the left and scroll down to sccope and add "channels:history", "channels:read", "channnels:write" are enabled ![image](https://user-images.githubusercontent.com/73621296/183267702-cb2a4a4d-0fbe-41ca-bd93-d2e91c054aa5.png)
+4. Go to the OAuth Permissions on the left and scroll down to scope and add "channels:history", "channels:read", "channnels:write" are enabled ![image](https://user-images.githubusercontent.com/73621296/183267702-cb2a4a4d-0fbe-41ca-bd93-d2e91c054aa5.png)
 7. Look for "OAuth Tokens for your workspace" then ensure to install the bot into your workspace.
 8. Copy that OAuth Token and replace the OAuth Token within the .env file.
 6. Copy your Signing Secret and replace the one in the .env folder.
