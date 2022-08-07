@@ -18,24 +18,25 @@ BOT_ID = client.api_call("auth.test")['user_id'] # Retrives BOT ID Number
 @slack_event_adapter.on("message") # Handles message events
 def message(payload):
     event = payload.get("event", {})
-    channel_id = event.get('channel')
     user_id = event.get('user')
-    text = event.get('text')
-    addresses = []
-    
-    if user_id != BOT_ID and type(text) == str:
-        whole_text = text.split()
-        addresses = checkForIPAddresses(whole_text)
-    
-    if len(addresses) > 0 and user_id != BOT_ID:
-        client.chat_postMessage(channel=channel_id, 
-        text="Hey there! There was one or more IP Addresses found in the"+
-        "message previously sent.")
-        for address in addresses:
-             message = "\n\nIP Address: " + address
-             client.chat_postMessage(channel=channel_id, text=message)
-             analysis = cleanJsonOutput(getIPInformation(address))
-             client.chat_postMessage(channel=channel_id, text=analysis)
+    if user_id != BOT_ID:
+        channel_id = event.get('channel')
+        text = event.get('text')
+        addresses = []
+
+        if type(text) == str:
+            whole_text = text.split()
+            addresses = checkForIPAddresses(whole_text)
+        
+        if len(addresses) > 0:
+            client.chat_postMessage(channel=channel_id, 
+            text="Hey there! There was one or more IP Addresses found in the "+
+            "message previously sent.")
+            for address in addresses:
+                message = "\n\nIP Address: " + address
+                client.chat_postMessage(channel=channel_id, text=message)
+                analysis = cleanJsonOutput(getIPInformation(address))
+                client.chat_postMessage(channel=channel_id, text=analysis)
 
 """
 @Summary {message} - This method handles each meessage and checks if the
@@ -103,7 +104,7 @@ def cleanJsonOutput(data):
     returnText = str(analysis["data"]["attributes"]["whois"]) + "\n"
 
     for keys in analysisCMC:
-        returnText += " " + str(keys).capitalize() + " : " + str(analysisCMC[keys]).capitalize() + " "
+        returnText += str(keys).capitalize() + " : " + str(analysisCMC[keys]).capitalize() + " "
         
     return returnText
 
