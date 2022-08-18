@@ -10,7 +10,7 @@ load_dotenv(dotenv_path=env_path) # Loads the .env file variables
 app = Flask(__name__) # Web server to handle events from Slack API
 slack_event_adapter = SlackEventAdapter(os.environ['SIGNING_SECRET'],
  "/slack/events", 
-app) # Allows to program to hhandle events from Slack API
+app) # Allows to program to handle events from Slack API
 
 client = slack.WebClient(token=os.environ['SLACK_TOKEN']) # Slack Token to connect
 BOT_ID = client.api_call("auth.test")['user_id'] # Retrives BOT ID Number
@@ -53,7 +53,7 @@ def checkForIPAddresses(entire_message):
   regex_check = re.compile(
     r'((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)'
   )
-  
+
   addresses_found = []
   
   for words in entire_message:
@@ -98,15 +98,8 @@ analysis made on the IP address by the virus total API.
 
 def cleanJsonOutput(data):
     analysis = json.loads(data)
-    cmc_key = "CMC Threat Intelligence"
-    analyze_key = "last_analysis_results"
-    analysisCMC = analysis["data"]["attributes"][analyze_key][cmc_key]
-    returnText = str(analysis["data"]["attributes"]["whois"]) + "\n"
-
-    for keys in analysisCMC:
-        returnText += str(keys).capitalize() + " : " + str(analysisCMC[keys]).capitalize() + " "
-        
-    return returnText
+    formatted = json.dumps(analysis, indent=4)
+    return formatted
 
 """
 @Summary {cleanJsonOutput} - This method parses the json output from the virus
