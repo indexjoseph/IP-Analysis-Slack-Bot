@@ -81,7 +81,7 @@ def getIPInformation(location):
     headers = {
         "Accept": "application/json",
         "x-apikey":
-        "a8a9120c6ef5ddf3791bca1719350d1f9157a392c209089730b6d6a13a58aaf9"
+        "enter api key"
     }
 
     response = requests.get(url, headers=headers)
