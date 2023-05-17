@@ -10,7 +10,7 @@ load_dotenv(dotenv_path=env_path) # Loads the .env file variables
 app = Flask(__name__) # Web server to handle events from Slack API
 slack_event_adapter = SlackEventAdapter(os.environ['SIGNING_SECRET'],
  "/slack/events", 
-app) # Allows to program to handle events from Slack API
+app) # Allows the program to handle events from Slack API
 
 client = slack.WebClient(token=os.environ['SLACK_TOKEN']) # Slack Token to connect
 BOT_ID = client.api_call("auth.test")['user_id'] # Retrives BOT ID Number
