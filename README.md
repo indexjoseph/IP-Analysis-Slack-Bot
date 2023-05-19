@@ -35,7 +35,7 @@ GIF created with [Gyazo GIF](https://gyazo.com/en).
 7. Look for "OAuth Tokens for your workspace" then ensure to install the bot into your workspace.
 8. Copy that OAuth Token and replace the OAuth Token within the .env file.
 6. Copy your Signing Secret and replace the one in the .env folder.
-7. Go to event subscriptions on thhe left and enable events on your Slack API Website for your bot
+7. Go to event subscriptions on the left and enable events on your Slack API Website for your bot
 8. Go to Basic Information on your Slack API Website for your bot and copy your Signing Secret, go to the .env file and replace the Signing Secret there
 9. Ensure you have saved the .env file
 10. Run the python script by doing "python .\ipAnalysisSlackBot.py".
@@ -43,7 +43,7 @@ GIF created with [Gyazo GIF](https://gyazo.com/en).
 12. In the ngrok CLI run the command "ngrok http 5000"
 13. Copy the Forwarding address by highlighting and right clicking it `Example Forwarding address: https://6bed-75-183-210-173.ngrok.io`
 14. Go back to the Slack API Website for your app and paste that url and add "/slack/events" to the end `Example: https://6bed-75-183-210-173.ngrok.io/slack/events`
-15. Go to subscribe to bot eveents below and add the bot user evennt "message.channels"
+15. Go to subscribe to bot events below and add the bot user evennt "message.channels"
 16. Go to your slack workspace and add the bot to a channel by just doing @BotName in the chat.
 17. Type an example ip address to ensure it's working. (Ensure both the ngrok forwarding address and python script are running)
 
